@@ -100,6 +100,42 @@ body {
   font-size: 0.9rem;
 }
 
+.edit-user-content {
+  box-sizing: border-box;
+  margin: auto;
+  border-radius: 10px;
+  position: relative;
+}
+
+.edit-user-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.edit-user-wrapper label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.edit-user-wrapper input {
+  width: 20%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.edit-user-button {
+  width: 9%;
+  margin: 0 1%;
+  margin-top: 10px;
+}
+
 @media (min-width: 920px) {
   .hero {
     height: 400px;
