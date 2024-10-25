@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import logo from "../assets/img/argentBankLogo.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {logout} from "../redux/authSlice";
 
@@ -13,10 +13,18 @@ function NavBar() {
   const userName = useSelector((state) => state.user.profile?.userName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   console.log("isAuthenticated:", isAuthenticated);
   console.log("Profile:", profile);
   console.log("userName:", userName);
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      dispatch(logout()); // Si pas de token, on déconnecte l'utilisateur
+    }
+  }, [dispatch]);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -34,7 +42,7 @@ function NavBar() {
         <h1 className="sr-only">Argent Bank</h1>
       </NavLink>
       <div>   
-        {isAuthenticated ? ( // si authentifié alors signout à la place de signin
+        {isAuthenticated && location.pathname === "/profile" ? ( // si authentifié alors signout à la place de signin
         <>
         <span className="main-nav-item" >
           {userName}
