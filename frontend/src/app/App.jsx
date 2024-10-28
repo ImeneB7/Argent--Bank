@@ -6,7 +6,6 @@ import Profile from '../pages/Profile';
 import NotFound404 from '../pages/NotFound404';
 import store from '../app/store';
 import { Provider } from 'react-redux';
-import ProtectedRoute from '../components/ProtectedRoute';
 
 
 
@@ -17,7 +16,7 @@ function App() {
       <Routes>
       <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>} />
-        <Route path='/profile' element={<ProtectedRoute element={Profile}/>} />
+        <Route path='/profile' element={<Profile/>} />
         <Route path='*' element={<NotFound404/>} />
       </Routes>
     </Router>
