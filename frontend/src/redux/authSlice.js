@@ -7,8 +7,8 @@ import {loginUser} from './authActions';
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        token: localStorage.getItem('authToken') || null,
-        isAuthenticated: !!localStorage.getItem('authToken'),
+        token: null,
+        isAuthenticated: false,
         loading: false,
         error: null,
     },

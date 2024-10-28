@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import logo from "../assets/img/argentBankLogo.png";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {logout} from "../redux/authSlice";
 
@@ -9,15 +9,13 @@ import {logout} from "../redux/authSlice";
 function NavBar() {
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const profile = useSelector((state) => state.user.profile);
+
   const userName = useSelector((state) => state.user.profile?.userName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+
 
   console.log("isAuthenticated:", isAuthenticated);
-  console.log("Profile:", profile);
-  console.log("userName:", userName);
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -42,16 +40,13 @@ function NavBar() {
         <h1 className="sr-only">Argent Bank</h1>
       </NavLink>
       <div>   
-        {isAuthenticated && location.pathname === "/profile" ? ( // si authentifié alors signout à la place de signin
+        {isAuthenticated ? ( // si authentifié alors signout à la place de signin
         <>
-        <span className="main-nav-item" >
-          {userName}
-        </span>
-          
-          <NavLink to='/login' onClick={handleLogout} className="main-nav-item">
-          <i className="fa fa-sign-out"></i>
-          Sign Out
-        </NavLink>
+        {/* Affiche le nom d'utilisateur et Sign Out */}
+            <NavLink to="/profile" className="main-nav-item">{userName}</NavLink>
+            <NavLink to="/login" onClick={handleLogout} className="main-nav-item">
+              <i className="fa fa-sign-out"></i> Sign Out
+            </NavLink>
         </>
         ) : (
         <NavLink to='/login' className="main-nav-item">

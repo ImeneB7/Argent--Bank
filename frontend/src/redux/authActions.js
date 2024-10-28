@@ -22,7 +22,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({email, passw
             throw new Error('Token not found in response');
         }
 
-        localStorage.setItem('authToken', token);
+        
         return token;
     } catch (error) {
         console.error("Error:", error.response.data);
